@@ -21,11 +21,15 @@ grad = zeros(size(theta));
 %
 
 
+% J = sum(((theta' * X')' - y).^2) / (2*m);
+hypothesis = X * theta;
+
+pos = log(sigmoid(hypothesis))' * -y;
+neg = log(1- sigmoid(hypothesis))' * (1-y);
+J = 1/m*(pos - neg) ;
 
 
-
-
-
+grad = 1/m*(sigmoid(hypothesis) - y)' * X;	
 
 % =============================================================
 
